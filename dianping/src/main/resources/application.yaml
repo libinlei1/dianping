@@ -9,13 +9,13 @@ spring:
       max-request-size: 20MB
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/dp?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://*******:3306/dp?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
     username: root
-    password: 123456
+    password: ********
   redis:
     host: localhost
     port: 6379
-#    password: 123321
+#    password: ******
     lettuce:
       pool:
         max-active: 10
@@ -24,11 +24,11 @@ spring:
         time-between-eviction-runs: 10s
     database: 1
   rabbitmq:
-      host: 192.168.187.128 # 你的虚拟机IP
+      host: ************ # 你的虚拟机IP
       port: 5672 # 端口
       virtual-host: /hmall # 虚拟主机
-      username: hmall # 用户名
-      password: 123321 # 密码
+      username: ***** # 用户名
+      password: ***** # 密码
   kafka:
       bootstrap-servers: localhost:9092
       producer:
@@ -59,9 +59,9 @@ dromara:
   aliyun-oss:
   - platform: aliyun-oss-1 # 存储平台标识
     enable-storage: true # 启用存储
-    access-key: LTAI5tH83anVGkjzwu72vmkR
-    secret-key: q6yrxi6hV1ZZxrBlWwl4oyx7W7Op6r
+    access-key: **************
+    secret-key: ******************
     end-point: oss-cn-beijing.aliyuncs.com
-    bucket-name: dp-lbl
-    domain: https://dp-lbl.oss-cn-beijing.aliyuncs.com/ # 访问域名，注意“/”结尾，例如：https://abc.oss-cn-shanghai.aliyuncs.com/
+    bucket-name: *****
+    domain: https://****.oss-cn-beijing.aliyuncs.com/ # 访问域名，注意“/”结尾，例如：https://abc.oss-cn-shanghai.aliyuncs.com/
     base-path: dp-images/ # 基础路径
