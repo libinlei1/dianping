@@ -1,0 +1,67 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: dp
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 20MB
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/dp?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    username: root
+    password: 123456
+  redis:
+    host: localhost
+    port: 6379
+#    password: 123321
+    lettuce:
+      pool:
+        max-active: 10
+        max-idle: 10
+        min-idle: 1
+        time-between-eviction-runs: 10s
+    database: 1
+  rabbitmq:
+      host: 192.168.187.128 # 你的虚拟机IP
+      port: 5672 # 端口
+      virtual-host: /hmall # 虚拟主机
+      username: hmall # 用户名
+      password: 123321 # 密码
+  kafka:
+      bootstrap-servers: localhost:9092
+      producer:
+        key-serializer: org.apache.kafka.common.serialization.StringSerializer
+        value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      consumer:
+        key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+        value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+        group-id: seckill-group
+        properties:
+          spring:
+            json:
+              trusted:
+                packages: com.hmdp.entity
+  jackson:
+    default-property-inclusion: non_null # JSON处理时忽略非空字段
+mybatis-plus:
+  type-aliases-package: com.hmdp.entity # 别名扫描包
+logging:
+  level:
+    com.hmdp: debug
+# 文件上传
+dromara:
+ x-file-storage: #文件存储配置
+  default-platform: aliyun-oss-1 #默认使用的存储平台
+  thumbnail-suffix: ".min.jpg" #缩略图后缀，例如【.min.jpg】【.png】
+#对应平台的配置写在这里，注意缩进要对齐
+  aliyun-oss:
+  - platform: aliyun-oss-1 # 存储平台标识
+    enable-storage: true # 启用存储
+    access-key: LTAI5tH83anVGkjzwu72vmkR
+    secret-key: q6yrxi6hV1ZZxrBlWwl4oyx7W7Op6r
+    end-point: oss-cn-beijing.aliyuncs.com
+    bucket-name: dp-lbl
+    domain: https://dp-lbl.oss-cn-beijing.aliyuncs.com/ # 访问域名，注意“/”结尾，例如：https://abc.oss-cn-shanghai.aliyuncs.com/
+    base-path: dp-images/ # 基础路径
